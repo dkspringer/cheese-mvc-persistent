@@ -13,17 +13,18 @@
 
 <table class="table">
 
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Category</th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Category</th>
+  </tr>
 
-    <tr th:each="cheese : ${cheeses}">
-        <td th:text="${cheese.name}"></td>
-        <td th:text="${cheese.description}"></td>
-        <td th:text="${cheese.category.name}"></td>
-    </tr>
+  <tr th:each="cheese : ${cheeses}">
+    <td th:text="${cheese.name}"></td>
+    <td th:text="${cheese.description}"></td>
+    <td><a th:href="@{/cheese/category(id=${cheese.category.id})}"
+           th:text="${cheese.category.name}"></a></td>
+  </tr>
 
 </table>
 

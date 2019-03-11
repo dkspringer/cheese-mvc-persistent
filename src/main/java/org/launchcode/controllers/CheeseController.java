@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by LaunchCode
@@ -72,11 +73,18 @@ public class CheeseController {
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
 
-        for (int cheeseId : cheeseIds) {
+        for (int cheeseId : cheeseIds)
             cheeseDao.delete(cheeseId);
-        }
 
         return "redirect:";
+    }
+
+    @RequestMapping(value = "category", method = RequestMethod.GET)
+    public String category(Model model, @RequestParam int id) {
+        Category category = categoryDao.findOne(id);
+        model.addAttribute("cheeses", category.getCheeses());
+        model.addAttribute("title", "My Cheeses: " + category.getName());
+        return "cheese/index";
     }
 
 }
