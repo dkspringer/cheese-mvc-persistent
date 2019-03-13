@@ -5,10 +5,20 @@
     <h1 th:text="${title}">Default Title</h1>
 
     <nav th:replace="fragments :: navigation"></nav>
-
-    <ul>
-      <li th:each="cheese : ${menu.cheeses}" th:text="${cheese.name}"></li>
-    </ul>
+    <br />
+    <table th:fragment="cheeseTable" class="table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+      </tr>
+      <tr th:each="cheese : ${menu.cheeses}">
+        <td th:text="${cheese.name}"></td>
+        <td th:text="${cheese.description}"></td>
+        <td><a th:href="@{/cheese/category(id=${cheese.category.id})}"
+               th:text="${cheese.category.name}"></a></td>
+      </tr>
+    </table>
 
     <p><a th:href="'/menu/add-item/' + ${menu.id}">Add Cheese</a></p>
 

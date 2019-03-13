@@ -4,9 +4,17 @@
 <body class="container">
   <h1 th:text="${title}">Default Title</h1>
   <nav th:replace="fragments :: navigation"></nav>
-  <ul>
-    <li th:each="category : ${categories}" th:text="${category.name}" ></li>
-  </ul>
+  <br />
+  <table class="table">
+    <tr>
+      <th>Category Name</th>
+      <th># Items</th>
+    </tr>
+    <tr th:each="cat : ${categories}">
+      <td><a th:href="@{/cheese/category(id=${cat.id})}" th:text="${cat.name}"></a></td>
+      <td th:href="'/menu/view/' + ${cat.id}" th:text="${cat.cheeses.size()}"></td>
+    </tr>
+  </table>
 
   <a th:href="@{/category/add}">Add Category</a>
 </body>
