@@ -84,5 +84,4 @@ public class MenuController {
         return "redirect:/menu/view/" + menu.getId();
     }
 
-
 }
